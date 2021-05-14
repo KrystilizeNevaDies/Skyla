@@ -57,11 +57,11 @@ class BlockStates(private val properties: BlockPropertyList) {
      * @param value
      * @return
      */
-    fun getStateWithChange(properties: Map<String?, String>, key: String?, value: String): BlockState? {
+    fun getStateWithChange(properties: Map<String, String>, key: String?, value: String): BlockState? {
         val lookupKey = properties.entries
             .sortedBy { it.key }
             .map { entry ->
-                val prefix = entry.key.toString() + "="
+                val prefix = entry.key + "="
                 if (entry.key.equals(key, ignoreCase = true)) {
                     return@map prefix + value
                 }

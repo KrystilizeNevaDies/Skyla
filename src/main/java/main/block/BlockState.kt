@@ -3,7 +3,7 @@ package main.block
 import net.minestom.server.instance.block.Block
 
 class BlockState(val blockId: Short, val parent: BlockStates, vararg propertyList: String) {
-    private val properties: Map<String?, String> = propertyList.associate {
+    private val properties: Map<String, String> = propertyList.associate {
         val parts = it.split('=')
 
         parts[0] to parts[1]
