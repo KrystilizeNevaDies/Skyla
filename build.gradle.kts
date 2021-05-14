@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
@@ -44,6 +43,10 @@ dependencies {
 
     // import kotlinx serialization
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
+
+    // Use the JUpiter test library.
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+
 }
 tasks.withType<Test> {
     useJUnitPlatform()

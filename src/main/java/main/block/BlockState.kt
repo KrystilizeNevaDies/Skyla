@@ -1,10 +1,13 @@
 package main.block
 
 import net.minestom.server.instance.block.Block
-import java.util.*
 
 class BlockState(val blockId: Short, val parent: BlockStates, vararg propertyList: String) {
-    val properties: Map<String?, String>
+    private val properties: Map<String?, String> = propertyList.associate {
+        val parts = it.split('=')
+
+        parts[0] to parts[1]
+    }
 
     /**
      * Return the value of the given property key
@@ -32,16 +35,5 @@ class BlockState(val blockId: Short, val parent: BlockStates, vararg propertyLis
             properties.entries.
             joinToString(",") { e -> e.key.toString() + "=" + e.value }
         return Block.fromStateId(blockId).toString() + "{$props}"
-    }
-
-    init {
-        val properties: MutableMap<String?, String> = HashMap()
-        for (property in propertyList) {
-            val parts = property.split('=')
-            val key = parts[0]
-            val value = parts[1]
-            properties[key] = value
-        }
-        this.properties = Collections.unmodifiableMap(properties)
     }
 }
