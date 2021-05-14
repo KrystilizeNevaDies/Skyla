@@ -8,14 +8,14 @@ import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.CustomBlock;
 import net.minestom.server.utils.BlockPosition;
 
-public abstract class VisualCustomBlock extends CustomBlock {
+public abstract class SkylaCustomBlock extends CustomBlock {
 
     private final Block baseBlock;
     private final BlockPropertyList properties;
     private final BlockStates blockStates;
     private final BlockState baseBlockState;
 	
-    public VisualCustomBlock(short baseBlockID, String blockID) {
+    public SkylaCustomBlock(short baseBlockID, String blockID) {
 		super(baseBlockID, blockID);
 		
         this.baseBlock = Block.fromStateId(baseBlockID);
@@ -37,10 +37,11 @@ public abstract class VisualCustomBlock extends CustomBlock {
                 blockStates.add(blockState);
             }
         }
+        
         baseBlockState = blockStates.getDefault();
 	}
 
-    public BlockState getBaseBlockState() {;
+    public BlockState getBaseBlockState() {
     	return baseBlockState;
     }
     
@@ -50,5 +51,10 @@ public abstract class VisualCustomBlock extends CustomBlock {
 
 	public short blockStateOnPlacement(Player player, BlockPosition position, Data data) {
 		return getBaseBlockState().getBlockId();
+	}
+	
+	@Override
+	public short getCustomBlockId() {
+		return BlockSystem.getCustomBlockId(this);
 	}
 }

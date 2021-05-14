@@ -7,7 +7,7 @@ import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import main.block.VisualCustomBlock;
+import main.block.SkylaCustomBlock;
 import main.block.power.powerblocks.PowerDiverterBlock;
 import net.kyori.adventure.text.Component;
 import net.minestom.server.data.Data;
@@ -20,7 +20,7 @@ import net.minestom.server.utils.chunk.ChunkUtils;
 import net.minestom.server.utils.time.TimeUnit;
 import net.minestom.server.utils.time.UpdateOption;
 
-public abstract class CustomPowerBlock extends VisualCustomBlock {
+public abstract class CustomPowerBlock extends SkylaCustomBlock {
 	
 	public CustomPowerBlock(@NotNull Block block, @NotNull String identifier, double maxPower) {
 		this(block.getBlockId(), identifier, maxPower);
@@ -131,10 +131,5 @@ public abstract class CustomPowerBlock extends VisualCustomBlock {
 	@Override
 	public UpdateOption getUpdateOption() {
 		return new UpdateOption(5, TimeUnit.TICK);
-	}
-	
-	@Override
-	public short getCustomBlockId() {
-		return (short) Math.abs((short) this.getIdentifier().hashCode());
 	}
 }

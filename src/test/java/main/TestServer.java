@@ -46,11 +46,14 @@ public class TestServer {
     		
     		PlayerInventory inventory = player.getInventory();
     		
-    		inventory.addItemStack(ItemStack.of(Material.REDSTONE));
-    		inventory.addItemStack(ItemStack.of(Material.REPEATER));
-    		inventory.addItemStack(ItemStack.of(Material.BELL));
-    		inventory.addItemStack(ItemStack.of(Material.PISTON));
+    		inventory.addItemStack(ItemStack.of(Material.REDSTONE).withAmount(100));
+    		inventory.addItemStack(ItemStack.of(Material.REDSTONE_BLOCK).withAmount(100));
+    		inventory.addItemStack(ItemStack.of(Material.REPEATER).withAmount(100));
+    		inventory.addItemStack(ItemStack.of(Material.BELL).withAmount(100));
+    		inventory.addItemStack(ItemStack.of(Material.PISTON).withAmount(100));
     	});
+    	
+    	SkylaExtension.runStandalone();
     	
     	server.start("0.0.0.0", 25565);
     }
