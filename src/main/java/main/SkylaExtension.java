@@ -3,7 +3,6 @@ package main;
 import org.slf4j.Logger;
 
 import main.block.BlockSystem;
-import main.commands.PlaceBlockCommand;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.extensions.Extension;
 import net.minestom.server.instance.Instance;
@@ -29,7 +28,7 @@ public class SkylaExtension extends Extension {
 	
 	@Override
 	public void postInitialize() {
-		MinecraftServer.getCommandManager().register(new PlaceBlockCommand());
+		
 	}
 
 	@Override

@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation 'com.github.Minestom:Minestom:19e22d0'
+    implementation 'com.github.Minestom:Minestom:6a712b3'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'

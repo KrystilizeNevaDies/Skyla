@@ -8,8 +8,9 @@ import javax.annotation.Nullable;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import main.SkylaExtension;
-import main.block.power.powerblocks.PowerBlock;
 import net.minestom.server.instance.Instance;
+import net.minestom.server.utils.BlockPosition;
+import net.minestom.server.utils.chunk.ChunkUtils;
 
 // Defines the behavior of the custom power system for one instance
 public class PowerSystem {
@@ -42,6 +43,15 @@ public class PowerSystem {
 	@Nullable
 	public PowerBlock getPowerBlock(long chunk, int pos) {
 		return indexWireGrid(chunk)[pos];
+	}
+	
+	public PowerBlock getPowerBlock(BlockPosition blockPosition) {
+		int chunkX = ChunkUtils.getChunkCoordinate(blockPosition.getX());
+		int chunkZ = ChunkUtils.getChunkCoordinate(blockPosition.getZ());
+		long chunk = ChunkUtils.getChunkIndex(chunkX, chunkZ);
+		int positionIndex = ChunkUtils.getBlockIndex(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
+		
+		return indexWireGrid(chunk)[positionIndex];
 	}
 	
 	private PowerBlock[] indexWireGrid(long chunk) {

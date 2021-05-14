@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.entity.Player;
 import net.minestom.server.event.GlobalEventHandler;
 import net.minestom.server.event.player.PlayerLoginEvent;
 import net.minestom.server.event.player.PlayerSpawnEvent;
@@ -16,6 +17,9 @@ import net.minestom.server.instance.ChunkPopulator;
 import net.minestom.server.instance.InstanceContainer;
 import net.minestom.server.instance.batch.ChunkBatch;
 import net.minestom.server.instance.block.Block;
+import net.minestom.server.inventory.PlayerInventory;
+import net.minestom.server.item.ItemStack;
+import net.minestom.server.item.Material;
 import net.minestom.server.utils.Position;
 import net.minestom.server.world.biomes.Biome;
 
@@ -34,7 +38,19 @@ public class TestServer {
     	GlobalEventHandler handler = MinecraftServer.getGlobalEventHandler();
     	
     	handler.addEventCallback(PlayerLoginEvent.class, (event) -> event.setSpawningInstance(INSTANCE));
-    	handler.addEventCallback(PlayerSpawnEvent.class, (event) -> event.getPlayer().teleport(SPAWN_POSITION));
+    	handler.addEventCallback(PlayerSpawnEvent.class, (event) -> {
+    		
+    		Player player = event.getPlayer();
+    		
+    		player.teleport(SPAWN_POSITION);
+    		
+    		PlayerInventory inventory = player.getInventory();
+    		
+    		inventory.addItemStack(ItemStack.of(Material.REDSTONE));
+    		inventory.addItemStack(ItemStack.of(Material.REPEATER));
+    		inventory.addItemStack(ItemStack.of(Material.BELL));
+    		inventory.addItemStack(ItemStack.of(Material.PISTON));
+    	});
     	
     	server.start("0.0.0.0", 25565);
     }
