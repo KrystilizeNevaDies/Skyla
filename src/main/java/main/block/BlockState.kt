@@ -2,7 +2,7 @@ package main.block
 
 import net.minestom.server.instance.block.Block
 
-class BlockState(val blockId: Short, val parent: BlockStates, vararg propertyList: String) {
+class BlockState(val blockId: Short, private val parent: BlockStates, vararg propertyList: String) {
     private val properties: Map<String, String> = propertyList.associate {
         val parts = it.split('=')
 
@@ -27,7 +27,7 @@ class BlockState(val blockId: Short, val parent: BlockStates, vararg propertyLis
      * @return the corresponding blockstate (they are pooled inside this blockstate's parent BlockStates)
      */
     fun with(key: String?, value: String): BlockState {
-        return parent.getStateWithChange(properties, key, value)!! // TODO where is this null coming from
+        return parent.getStateWithChange(properties, key, value)
     }
 
     override fun toString(): String {

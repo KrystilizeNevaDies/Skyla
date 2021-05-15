@@ -57,7 +57,7 @@ class BlockStates(private val properties: BlockPropertyList) {
      * @param value
      * @return
      */
-    fun getStateWithChange(properties: Map<String, String>, key: String?, value: String): BlockState? {
+    fun getStateWithChange(properties: Map<String, String>, key: String?, value: String): BlockState {
         val lookupKey = properties.entries
             .sortedBy { it.key }
             .map { entry ->
@@ -68,7 +68,7 @@ class BlockStates(private val properties: BlockPropertyList) {
                 prefix + entry.value
             }
             .joinToString(",")
-        return nameLookup[lookupKey]
+        return nameLookup[lookupKey] ?: throw Exception("Incorrect block state produced with $properties")
     }
 
     val default: BlockState

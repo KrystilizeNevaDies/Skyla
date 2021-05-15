@@ -16,6 +16,9 @@ plugins {
     id("org.jetbrains.dokka") version "1.4.32"
 }
 
+group = "main.Skyla"
+version = "1.0-SNAPSHOT"
+
 repositories {
     // Use mavenCentral
     mavenCentral()
@@ -48,6 +51,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 
 }
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
@@ -78,7 +82,6 @@ tasks {
 
     // Make build depend on shadowJar as shading dependencies will most likely be required.
     build { dependsOn(shadowJar) }
-
 }
 
 java {
